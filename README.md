@@ -7,6 +7,8 @@ An environmental mentor chatbot that helps people live more sustainably. Built w
 ![LangChain](https://img.shields.io/badge/LangChain-Agent-green)
 ![Llama](https://img.shields.io/badge/Llama-3.2-purple)
 
+<img width="1866" height="1057" alt="image" src="https://github.com/user-attachments/assets/136e1db3-da81-477f-8151-027ba81ae247" />
+
 ## Demo
 
 https://youtu.be/uo9xc25K2w4 
