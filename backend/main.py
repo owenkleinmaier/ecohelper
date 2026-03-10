@@ -1,5 +1,6 @@
 import time
 import requests
+import os
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -16,6 +17,9 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain.schema.runnable import RunnablePassthrough, RunnableLambda
+from dotenv import load_dotenv
+
+load_dotenv()
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -195,7 +199,7 @@ def get_air_quality(city: str, country: str = "US") -> dict:
 
     # build waqi url, only city is used
     url = f"https://api.waqi.info/feed/{city}/"
-    r = requests.get(url, params={"token": "426428f0fb57c1bae4ffc943cfc6da933888bd54"})
+    r = requests.get(url, params={"token": os.getenv("WAQI_API_TOKEN")})
     data = r.json()
 
     d = data.get("data", {})
@@ -238,7 +242,7 @@ def get_carbon_footprint(activity_type: str, value: float, unit: str = "mi") -> 
     else:
         distance_unit = "mi"
 
-    api_key = "PTST3V55XX4XF1K1E66DJZRHK8"
+    api_key = os.getenv("CLIMATIQ_API_KEY")
     url = "https://api.climatiq.io/data/v1/estimate"
 
     body = {
